@@ -1,4 +1,7 @@
 
+using Microsoft.EntityFrameworkCore;
+using OnlineEduApp.DataAccess.Contexts;
+
 namespace OnlineEduApp.API
 {
     public class Program
@@ -8,6 +11,11 @@ namespace OnlineEduApp.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            builder.Services.AddDbContext<AppDbContext>(opt =>
+            {
+                opt.UseSqlServer(builder.Configuration.GetConnectionString("mssql"));
+            });
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

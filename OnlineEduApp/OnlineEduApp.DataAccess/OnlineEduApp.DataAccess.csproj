@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineEduApp.Entities\OnlineEduApp.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

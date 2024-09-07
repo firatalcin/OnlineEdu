@@ -1,6 +1,11 @@
 
 using Microsoft.EntityFrameworkCore;
+using OnlineEduApp.Business.Abstract;
+using OnlineEduApp.Business.Concrete;
+using OnlineEduApp.DataAccess.Abstract;
 using OnlineEduApp.DataAccess.Contexts;
+using OnlineEduApp.DataAccess.Repositories;
+using System.Reflection;
 
 namespace OnlineEduApp.API
 {
@@ -11,6 +16,9 @@ namespace OnlineEduApp.API
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+            builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            builder.Services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
+            builder.Services.AddScoped(typeof(IGenericService<>), typeof(GenericManager<>));
 
             builder.Services.AddDbContext<AppDbContext>(opt =>
             {
